@@ -1,0 +1,24 @@
+ void makeJson() {
+        StringBuilder dirPath = new StringBuilder("D:\\java projects\\PerimetrProject\\src\\main\\java\\aepanchin\\");
+        StringBuilder defaultfileName = new StringBuilder("Model");
+        int fileIndex = 1;
+        boolean answer = false;
+        StringBuilder txtJson = new StringBuilder();
+        Gson jsonFromArray = new GsonBuilder().create();
+        txtJson.append(jsonFromArray.toJson(defaultField));
+        System.out.println(txtJson);
+        try {
+            while (answer) {
+                File outputFile = new File(dirPath.append(defaultfileName).append(".txt").toString());
+                if (outputFile.exists()) {
+                    defaultfileName.delete(5, (defaultfileName.length() - 1));
+                    defaultfileName.append(fileIndex);
+                    fileIndex++;
+                } else {
+                    answer = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
